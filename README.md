@@ -80,6 +80,19 @@ As we can see, there is a significant difference between the inference time of a
 
 ### Output Images Examples: 
 
+1. GAN output for (n_epochs = 20, batch_size = 128)
+
+![img07](./images/c9.JPG)
+
+2. GAN output for (n_epochs = 60, batch_size = 100)
+
+![img08](./images/c8.JPG)
+
+3. DDPM output for (n_epochs = 20, batch_size = 128)
+
+![img09](./images/c10.JPG)
+
+
 
 
 
