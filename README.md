@@ -33,8 +33,12 @@ We give $x_t$ along with $t$ (the current step) to a network, generally CNN and 
 
 $${\theta}^* = argmin_{\theta} || \epsilon - \epsilon_{\theta}(\sqrt{\bar{\alpha_t}} x_0 + \sqrt{1-\bar{\alpha_t}} \epsilon, t) ||$$
 
-We repeat the above minimization until the network converges: 
+We repeat the above minimization until the network converges: ($T$ is a hyper parameter showing the maximum step in the forward trajectory.)
 
 ![img02](./images/c1.JPG)
+
+When the network has learned how to reduce the proper amount of noise from $x_t$ when the step $t$ is given, the sampling step begins. In sampling, we start from a random noise and denoise it step-by-step until we reach an image belonging to the same distribution as the training set.
+
+![img03](./images/c2.JPG)
 
 
