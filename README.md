@@ -51,7 +51,7 @@ When the network has learned how to reduce the proper amount of noise from $x_t$
 
 In order to have a fair comparison, the number of epochs and batch sizes should be equal for both models. However, in order to make sure that $\epsilon_{\theta}(x_t, t)$ has seen random noise during its training, $T$ should be set to large values ($\sim 1000$). 
 
-As we can see, the training of GAN takes more time. The reason is that two networks are trained in GAN, namely($D_{\phi}$ and $G_{\theta}$). In DDPM, only $\epsilon_{\theta}(x_t, t)$ is trained.
+As we can see, the training of GAN takes more time. The reason is GAN there are two networks to be trained, namely $D_{\phi}$ and $G_{\theta}$. In DDPM, only $\epsilon_{\theta}(x_t, t)$ is trained.
 
 | (batch size, n_epoch) | GAN | training time (s) |
 | --- | --- | --- |
@@ -70,3 +70,16 @@ For GAN:
 For DDPM: 
 
 ![img06](./images/c3.JPG)
+
+| model | inference time average(s) |
+| --- | --- |
+| GAN | 0.01 |
+| DDPM | 7.2 |
+
+As we can see, there is a significant difference between the inference time of a GAN and a DDPM. The reason is the iterative nature of DDPM's sampling procedure, whereas GAN generates in only one iteraion.
+
+### Output Images Examples: 
+
+
+
+
