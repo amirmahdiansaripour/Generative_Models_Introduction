@@ -76,7 +76,7 @@ For DDPM:
 | GAN | 0.01 |
 | DDPM | 7.2 |
 
-As we can see, there is a significant difference between the inference time of a GAN and a DDPM. The reason is the iterative nature of DDPM's sampling procedure, whereas GAN generates in only one iteraion.
+As we can see, there is a significant difference between the inference time of a GAN and a DDPM. The reason is the iterative loop in the sampling phase of DDPM, which runs for $T$ times, whereas GAN generates in only one iteraion.
 
 ### Output Images Examples: 
 
