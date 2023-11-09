@@ -47,5 +47,16 @@ When the network has learned how to reduce the proper amount of noise from $x_t$
 
 ## Comparison: 
 
+### Training time: 
+
+In order to have a fair comparison, the number of epochs and batch sizes should be equal for both models.
+
+| (batch size, n_epoch) | GAN | training time (s) |
+| --- | --- | --- |
+| (128, 20) | GAN | 574.85 |
+| (128, 20) |  DDPM | 508.57 |
+
+
+
 
 
