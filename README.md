@@ -14,7 +14,7 @@ It tries to distinguish between images belonging to the dataset and those produc
 
 The generator tries to fool the discriminator in a way that it always gives $D_\phi$ close to one. In other words, the generator tries to produce images that are as similar as possible to the training set images, making the discriminator confused.
 
-![img00](./images/c6.JPG)
+![img01](./images/c6.JPG)
 
 
 As a result, the final loss function can be written as mini-max equation, with $\theta$ as the parameters of the generator network and $\phi$ as the parameters of the discriminator. The discriminator wants to maxmimize the second term, where as the generator tries to minimize the second term be forcing $D_{\phi} \sim 1$
@@ -25,7 +25,16 @@ After both the generator and the discriminator are trained, the discriminator is
 
 ## Diffusion-Based: 
 
-Diffusion-based models have many variations, among which Denoising Diffusion Probablistic Models (DDPM) are discussed here. In DDPM, only one network is trained. We add a random noise to $x_0$, which is an image of the dataset, and obtain $x_t$ based on this formula:
+Diffusion-based models have many variations, among which Denoising Diffusion Probablistic Models (DDPM) are discussed here. In DDPM, only one network is trained. We add a random noise ($\epsilon$) to $x_0$, which is an image of the dataset, and obtain $x_t$ based on this formula:
 
 $$x_t = \sqrt{\bar{\alpha_t}} x_0 + \sqrt{1-\bar{\alpha_t}} \epsilon$$
+
+We give $x_t$ along with $t$ (the current step) to a network, generally CNN and U-Net, to predict the noise which has initially been added ($\epsilon$). Hence, the network being trained in DDPM works based on the following loss function: ($\theta*$ is the parameter refering to the optimized weights of the network)
+
+$${\theta}^* = argmin_{\theta} || \epsilon - \epsilon_{\theta}(\sqrt{\bar{\alpha_t}} x_0 + \sqrt{1-\bar{\alpha_t}} \epsilon, t) ||$$
+
+We repeat the above minimization until the network converges: 
+
+![img02](./images/c1.JPG)
+
 
