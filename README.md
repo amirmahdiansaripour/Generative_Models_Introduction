@@ -53,7 +53,7 @@ In order to have a fair comparison, the number of epochs and batch sizes should 
 
 As we can see, the training of GAN takes more time. The reason is GAN there are two networks to be trained, namely $D_{\phi}$ and $G_{\theta}$. In DDPM, only $\epsilon_{\theta}(x_t, t)$ is trained.
 
-| (batch size, n_epoch) | GAN | training time (s) |
+| (batch size, n_epoch) | GAN | training time (second) |
 | --- | --- | --- |
 | (128, 20) | GAN | 574.85 |
 | (128, 20) |  DDPM | 508.57 |
@@ -71,7 +71,7 @@ For DDPM:
 
 ![img06](./images/c3.JPG)
 
-| model | inference time average(s) |
+| model | inference time average (second) |
 | --- | --- |
 | GAN | 0.01 |
 | DDPM | 7.2 |
