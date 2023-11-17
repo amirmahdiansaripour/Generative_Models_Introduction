@@ -85,7 +85,7 @@ Viewing the high inference time of DDPM (7 sec), one may think that reducing the
 
 1. When $T = 100$:
 
-![img10](./images/T_100_execution_time.png)
+![img10](./images/T_100_exe_time.JPG)
 
 ![img11](./images/T_100.JPG)
 
