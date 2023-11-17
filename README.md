@@ -89,6 +89,8 @@ Viewing the high inference time of DDPM (7 sec), one may think that reducing the
 
 ![img11](./images/T_100.JPG)
 
+Obviously, the inference time has reduced (from 7 to 1 on average), but the quality of images is undesirable. The resoan is that when the number of steps is remarkablt reduced, the DDPM does not see pure noise in its training step. Therefore, it performs awfully in the inference step starting from $x_T = N(0, I)$ 
+
 ### Output Images Examples: 
 
 1. GAN output for (n_epochs = 20, batch_size = 128)
