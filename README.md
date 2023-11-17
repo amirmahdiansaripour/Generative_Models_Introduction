@@ -95,7 +95,7 @@ As we can see, there is a significant difference between the inference time of a
 
 ## References: 
 
-1. Jonathan Ho, Ajay Jain, Pieter Abbeel. \textbf{Denoising Diffusion Probabilistic Models}. arXiv preprint: 2006.11239, 2020.
+1. Jonathan Ho, Ajay Jain, Pieter Abbeel. $\textbf{Denoising Diffusion Probabilistic Models}$. arXiv preprint: 2006.11239, 2020.
 
 2. Ian J.Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, Yoshua Bengio. \textbf{Generative Adversarial Nets}. arXiv prepeint: 1406.2661, 2014.
 
