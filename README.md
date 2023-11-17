@@ -78,6 +78,17 @@ For DDPM:
 
 As we can see, there is a significant difference between the inference time of a GAN and a DDPM. The reason is the iterative loop in the sampling phase of DDPM, which runs for $T$ times, whereas GAN generates in only one iteraion.
 
+
+### Does Reducing T in DDPM Solve the High Inference Time?
+
+Viewing the high inference time of DDPM (7 sec), one may think that reducing the number of backward steps, $T$, which has been set to 1000, can reduce the delay. Let's try with $T = 100$ and $T = 500$:
+
+1. When $T = 100$:
+
+![img10](./images/T_100_execution_time.png)
+
+![img11](./images/T_100_execution_time.png)
+
 ### Output Images Examples: 
 
 1. GAN output for (n_epochs = 20, batch_size = 128)
