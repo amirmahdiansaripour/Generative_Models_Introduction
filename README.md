@@ -87,7 +87,7 @@ Viewing the high inference time of DDPM (7 sec), one may think that reducing the
 
 ![img10](./images/T_100_execution_time.png)
 
-![img11](./images/T_100_execution_time.png)
+![img11](./images/20_128_label_15_5.png)
 
 ### Output Images Examples: 
 
