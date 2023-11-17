@@ -97,10 +97,12 @@ As we can see, there is a significant difference between the inference time of a
 
 1. Jonathan Ho, Ajay Jain, Pieter Abbeel. $\textbf{Denoising Diffusion Probabilistic Models}$. arXiv preprint: 2006.11239, 2020.
 
-2. Ian J.Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, Yoshua Bengio. \textbf{Generative Adversarial Nets}. arXiv prepeint: 1406.2661, 2014.
+2. Ian J.Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, Yoshua Bengio. $\textbf{Generative Adversarial Nets}$. arXiv prepeint: 1406.2661, 2014.
 
-3. Olaf Ronneberger, Philipp Fischer, Thomas Brox. \textbf{U-Net: Convolutional Networks for Biomedical Image Segmentation}. arXiv preprint: 1505.04597.
+3. Olaf Ronneberger, Philipp Fischer, Thomas Brox. $\textbf{U-Net: Convolutional Networks for Biomedical Image Segmentation}$. arXiv preprint: 1505.04597.
 
+4. [Medium link for DCGAN](https://towardsdatascience.com/image-generation-in-10-minutes-with-generative-adversarial-networks-c2afc56bfa3b)
 
+5. [Medium link for DDPM](https://medium.com/mlearning-ai/enerating-images-with-ddpms-a-pytorch-implementation-cef5a2ba8cb1)  
 
 
