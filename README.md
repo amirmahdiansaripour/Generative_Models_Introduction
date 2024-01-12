@@ -48,7 +48,7 @@ When the network has learned how to reduce the proper amount of noise from $x_t$
 
 The idea behind VAE is to transfer our complex distribution to a prior and known distribution by passing it through an encoder. Subsequently, we sample from the latent space (encoder output) by a decoder symmetric to the encoder. Therefore, a general schema of a VAE looks like:
 
-![img12](./images/vae_1_1.png)
+![img12](./images/vae_1_2.png)
 
 For training a VAE, we should pay attention to two errors: **reconstruntion error**, which is how similar the generated images are to the initial ones, and the **regularization error**, which is how similar the latent distribution is to prior distribution ($N(0, I)$).
 
