@@ -50,6 +50,7 @@ The idea behind VAE is to transfer our complex distribution to a prior and known
 
 ![img12](./images/vae_1_1.png)
 
+For training a VAE, we should pay attention to two errors: reconstruntion error, which is how similar the generated images are to the initial ones, and the regularization error, which is how similar the latent distribution is to prior distribution ($N(0, I)$).
 
 ## Comparison: 
 
