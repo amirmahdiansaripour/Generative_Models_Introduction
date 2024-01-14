@@ -56,6 +56,10 @@ $$ \phi^* , \theta^* = argmin_{\phi, \theta} (L_{rec} + L_{reg}) = argmin_{\phi,
 
 When the loss function is minimized, we put the encoder aside, and only sample from the latent space. The sample is given to the decoder and the reconstructed image is achieved.
 
+An interesting view of the distribution of images in the latent space: (The transition from one distribution to another and the overlapping among them are fascinating!)
+
+![img13](./images/vae_distribution.png)
+
 ## Comparison: 
 
 ### Training time: 
