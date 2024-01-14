@@ -68,17 +68,18 @@ In order to have a fair comparison, the number of epochs and batch sizes should 
 
 As we can see, the training of GAN takes more time. The reason is GAN there are two networks to be trained, namely $D_{\phi}$ and $G_{\theta}$. In DDPM, only $\epsilon_{\theta}(x_t, t)$ is trained.
 
-| (batch size, n_epoch) | GAN | training time (second) |
+| (batch size, n_epoch) | Model | training time (second) |
 | --- | --- | --- |
-| (128, 20) | GAN | 574.85 |
+| (128, 20) | DCGAN | 574.85 |
 | (128, 20) |  DDPM | 508.57 |
+| (128, 20) |  VAE | 98.58 |
 
 
 ### Inference time: 
 
 Taking an average over 50 times of generating images: 
 
-For GAN:
+For DCGAN:
 
 ![img05](./images/c4.JPG)
 
@@ -86,10 +87,16 @@ For DDPM:
 
 ![img06](./images/c3.JPG)
 
+For VAE: 
+
+![img14](./images/vae_inf_time.png)
+
+
 | model | inference time average (second) |
 | --- | --- |
-| GAN | 0.01 |
+| DCGAN | 0.01 |
 | DDPM | 7.2 |
+| VAE | 0.03 |
 
 As we can see, there is a significant difference between the inference time of a GAN and a DDPM. The reason is the iterative loop in the sampling phase of DDPM, which runs for $T$ times, whereas GAN generates in only one iteraion.
 
