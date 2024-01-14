@@ -89,7 +89,7 @@ For DDPM:
 
 For VAE: 
 
-![img14](./images/vae_inf_time.png)
+![img14](./images/inf_time.png)
 
 
 | model | inference time average (second) |
