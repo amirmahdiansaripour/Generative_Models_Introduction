@@ -52,7 +52,7 @@ The idea behind VAE is to transfer our complex distribution to a prior and known
 
 $\theta$ and $\phi$ are the parameters of the encoder and decoder networks, respectively. For training a VAE, we should pay attention to two errors: **reconstruntion error**, which is how similar the generated images $\hat{x}$ are to the initial ones, and the **regularization error**, which is how similar the latent distribution is to prior distribution. Thus, the whole loss function becomes: 
 
-$$ \phi^* , \theta^* = argmin_{\phi, \theta} (L_{rec} + L_{reg}) = argmin_{\phi, \theta}(\\\, E_{z \\, \sim \\, q_{\phi} (z|x)} \\, \[log \\, p_{\theta} (x|z)\] + D_{KL}(\\, q_{\phi}(z|x) || p_{\theta}(z) \\,) \\\,) $$
+$$ \phi^* , \theta^* = argmin_{\phi, \theta} (L_{rec} + L_{reg}) = argmin_{\phi, \theta}(\\\, E_{z \\, \sim \\, q_{\phi} (z|x)} \\, \[log \\, p_{\theta} (x|z)\] + D_{KL}(\\, q_{\phi}(z|x) || p(z) \\,) \\\,) $$
 
 When the loss function is minimized, we put the encoder aside, and only sample from the latent space. The sample is given to the decoder and the reconstructed image is achieved.
 
