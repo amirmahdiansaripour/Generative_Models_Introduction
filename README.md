@@ -85,7 +85,7 @@ For DCGAN:
 
 For DDPM: 
 
-![img06](./images/c3.JPG)
+![img06](./images/ddpm_inference.PNG)
 
 For VAE: 
 
@@ -95,7 +95,7 @@ For VAE:
 | model | inference time average (second) |
 | --- | --- |
 | DCGAN | 0.01 |
-| DDPM | 7.2 |
+| DDPM | 3.87 |
 | VAE | 0.03 |
 
 As we can see, there is a significant difference between the inference time of a GAN and a DDPM. The reason is the iterative loop in the sampling phase of DDPM, which runs for $T$ times, whereas GAN generates in only one iteraion.
