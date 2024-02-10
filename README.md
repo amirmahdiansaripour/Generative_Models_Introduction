@@ -81,7 +81,7 @@ Taking an average over 50 times of generating images:
 
 For DCGAN:
 
-![img05](./images/c4.JPG)
+![img05](./images/gan_inference.PNG)
 
 For DDPM: 
 
