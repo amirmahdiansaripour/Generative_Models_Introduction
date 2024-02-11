@@ -17,7 +17,7 @@ The generator tries to fool the discriminator in a way that it always gives $D_\
 ![img01](./images/c6.JPG)
 
 
-As a result, the final loss function can be written as mini-max equation, with $\theta$ as the parameters of the generator network and $\phi$ as the parameters of the discriminator. The discriminator wants to maxmimize the second term, where as the generator tries to minimize the second term be forcing $D_{\phi} \sim 1$
+As a result, the final loss function can be written as mini-max equation, with $\theta$ as the parameters of the generator network and $\phi$ as the parameters of the discriminator. The discriminator aims to maxmimize the first term when images belong to the training set and the second term when images are fabricated.
 
 $$argmin_{G_{\theta}} argmax_{P_{\phi}} V(G_{\theta}, P_{\phi}) = E_{x \sim P_{data}} \[ log D_{\phi(x)} \] + E_{x \sim P_{G_{\theta}}} \[ log (1 - D_{\phi(x)}) \]$$
 
@@ -64,7 +64,7 @@ An interesting view of the distribution of images in the latent space: (The tran
 
 ### Training time: 
 
-In order to have a fair comparison, the number of epochs and batch sizes should be equal for both models. However, in order to make sure that $\epsilon_{\theta}(x_t, t)$ has seen random noise during its training, $T$ should be set to large values ($\sim 1000$). 
+In order to have a fair comparison, the number of epochs and batch sizes should be equal for all models. However, in order to make sure that $\epsilon_{\theta}(x_t, t)$ has seen random noise during its training, $T$ should be set to large values ($\sim 1000$). 
 
 As we can see, the training of GAN takes more time. The reason is GAN there are two networks to be trained, namely $D_{\phi}$ and $G_{\theta}$. In DDPM, only $\epsilon_{\theta}(x_t, t)$ is trained.
 
@@ -103,13 +103,13 @@ As we can see, there is a significant difference between the inference time of a
 
 ### Does Reducing T in DDPM Solve the High Inference Time?
 
-Viewing the high inference time of DDPM (7 sec), one may think that reducing the number of backward steps, $T$, which has been set to 1000, can reduce the delay. Let's try with $T = 100$ and $T = 500$:
+Viewing the high inference time of DDPM, one may think that reducing the number of backward steps, $T$, which has been set to 1000, can reduce the delay. Let's try with $T = 100$ and $T = 500$:
 
 1. When $T = 100$:
 
 ![img10](./images/T_100_exe_time.JPG) | ![img11](./images/T_100.JPG)
 
-Obviously, the inference time has reduced (from 7 to 1 on average), but the quality of images is undesirable. The resoan is that when the number of steps is remarkablt reduced, the DDPM does not see pure noise in its training step. Therefore, it performs awfully in the inference step starting from $x_T = N(0, I)$ 
+Obviously, the inference time has reduced, but the quality of images is undesirable. The resoan is that when the number of steps is remarkably reduced, the DDPM does not see pure noise in its training step. Therefore, it performs awfully in the inference step starting from $x_T = N(0, I)$ 
 
 ### Output Images Examples: 
 
