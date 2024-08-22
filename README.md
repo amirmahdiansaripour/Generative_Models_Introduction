@@ -1,154 +1,91 @@
 # Generative_Models_Introduction
 
-## Generative Adversarial Networks (GAN): 
+My bachelor's project on comparing three generative models (GAN, VAE, DDPM) in terms of inference time execution, quality, and diversity of generated images. I also implemented a novel method which applies GMM on the latent space of VAE in order for its output images to have higher diversity (contain samples from all classes of the training set). 
 
-The model has two subnetworks, a discriminator and a generator: (Here we discuss Deep Convolutional GAN or DCGAN)
+The scores I used for quality and diversity metrics are FID, precision, recall, density, and coverage. Please refer to their papers (mentioned in the references section) for understanding how they quantitatively measure quality and diversity metrics. 
 
-### Discriminator: 
+## Generative Adversarial Network (GAN): 
 
-It tries to distinguish between images belonging to the dataset and those produced by the generator. It does so by giving $D_\phi$, which lies between 0 and 1. The more $D_\phi$ is closed to one, the more the discriminator has detected that the input images are from the dataset. 
+### Discriminator and Generator Sub-Networks: 
 
-![img00](./images/c5.JPG)
+The Discriminator subnetwork I used in the project has three blocks, the first two of which have a Conv2D, Leaky ReLu, and Dropout layers. The last layer gives us the $D_\phi$.
 
-### Generator: 
+The Generator network takes a pure noise and applies three Conv2DTranspose layers (along side other activations) to convert the noise into a (28x28x1) binary image.
 
-The generator tries to fool the discriminator in a way that it always gives $D_\phi$ close to one. In other words, the generator tries to produce images that are as similar as possible to the training set images, making the discriminator confused.
-
-![img01](./images/c6.JPG)
-
-
-As a result, the final loss function can be written as mini-max equation, with $\theta$ as the parameters of the generator network and $\phi$ as the parameters of the discriminator. The discriminator aims to maxmimize the first term when images belong to the training set and the second term when images are fabricated.
-
-$$argmin_{G_{\theta}} argmax_{P_{\phi}} V(G_{\theta}, P_{\phi}) = E_{x \sim P_{data}} \[ log D_{\phi(x)} \] + E_{x \sim P_{G_{\theta}}} \[ log (1 - D_{\phi(x)}) \]$$
-
-After both the generator and the discriminator are trained, the discriminator is put aside and the generator starts from random noises. 
-
-## Diffusion-Based: 
-
-Diffusion-based models have many variations, among which Denoising Diffusion Probablistic Models (DDPM) are discussed here. In DDPM, only one network is trained. We add a random noise ($\epsilon$) to $x_0$, which is an image of the dataset, and obtain $x_t$ based on this formula:
-
-$$x_t = \sqrt{\bar{\alpha_t}} x_0 + \sqrt{1-\bar{\alpha_t}} \epsilon$$
-
-We give $x_t$ along with $t$ (the current step) to a network, generally CNN and U-Net, to predict the noise which has initially been added ($\epsilon$). Hence, the network being trained in DDPM works based on the following loss function: ($\theta*$ is the parameter refering to the optimized weights of the network)
-
-
-$${\theta}^* = argmin_{\theta} || \epsilon - \epsilon_{\theta}(\sqrt{\bar{\alpha_t}} x_0 + \sqrt{1-\bar{\alpha_t}} \epsilon, t) ||$$
-
-![img02](./images/c7.JPG)
-
-We repeat the above minimization until the network converges: ($T$ is a hyper parameter showing the maximum step in the forward trajectory.)
-
-![img02](./images/c1.JPG)
-
-When the network has learned how to reduce the proper amount of noise from $x_t$ when the step $t$ is given, the sampling step begins. In sampling, we start from a random noise and denoise it step-by-step until we reach an image belonging to the same distribution as the training set.
-
-![img03](./images/c2.JPG)
-
-## Variational Auto-Encoders: 
-
-The idea behind VAE is to transfer our complex distribution to a prior and known distribution ( $p(z) = N(0, I)$ ) by passing it through an encoder $q_{\phi}(z|x)$. Subsequently, we sample from the latent space (encoder output) by a decoder $p_{\theta}(\hat{x} | z)$ symmetric to the encoder. Therefore, a general schema of a VAE looks like:
-
-![img12](./images/vae_1_4.png)
-
-$\phi$ and $\theta$ are the parameters of the encoder and decoder networks, respectively. For training a VAE, we should pay attention to two errors: **reconstruntion error**, which is how similar the generated images $\hat{x}$ are to the initial ones, and the **regularization error**, which is how similar the latent distribution is to prior distribution. Thus, the whole loss function becomes: 
-
-$$ \theta^* , \phi^* = argmin_{\theta, \phi} (L_{rec} + L_{reg}) = argmin_{\theta, \phi}(\\\, -E_{z \\, \sim \\, q_{\phi} (z|x)} \\, \[log \\, p_{\theta} (\hat{x}|z)\] + D_{KL}(\\, q_{\phi}(z|x) || p(z) \\,) \\\,) $$
-
-When the loss function is minimized, we put the encoder aside, and only sample from the latent space. The sample is given to the decoder and the reconstructed image is achieved.
-
-An interesting view of the distribution of images in the latent space: (The transition from one distribution to another and the overlapping among them are fascinating!)
-
-![img13](./images/vae_distribution.png)
-
-## Comparison: 
-
-### Training time: 
-
-In order to have a fair comparison, the number of epochs and batch sizes should be equal for all models. However, in order to make sure that $\epsilon_{\theta}(x_t, t)$ has seen random noise during its training, $T$ should be set to large values ($\sim 1000$). 
-
-As we can see, the training of GAN takes more time. The reason is GAN there are two networks to be trained, namely $D_{\phi}$ and $G_{\theta}$. In DDPM, only $\epsilon_{\theta}(x_t, t)$ is trained.
-
-| (batch size, n_epoch) | Model | training time (second) |
-| --- | --- | --- |
-| (128, 20) | DCGAN | 574.85 |
-| (128, 20) |  DDPM | 508.57 |
-| (128, 20) |  VAE | 98.58 |
-
-
-### Inference time: 
-
-Taking an average over 50 times of generating images: 
-
-For DCGAN:
-
-![img05](./images/gan_inference.PNG)
-
-For DDPM: 
-
-![img06](./images/ddpm_inference.PNG)
-
-For VAE: 
-
-![img14](./images/inf_time.png)
-
-
-| model | inference time average (second) |
+| Discriminator | Generator |
 | --- | --- |
-| DCGAN | 0.01 |
-| DDPM | 3.87 |
-| VAE | 0.03 |
+![img01](./res_images/GAN_1.JPG) | ![img02](./res_images/GAN_gen_2.JPG) |
 
-As we can see, there is a significant difference between the inference time of a GAN and a DDPM. The reason is the iterative loop in the sampling phase of DDPM, which runs for $T$ times, whereas GAN generates in only one iteraion.
+Some samples generated by the GAN network on MNIST and Fashion-MNIST datasets:
+
+![img03](./res_images/GAN_3.JPG) | ![img04](./res_images/GAN_4.JPG)
+
+GAN score table (Inference Time is calculated based on  milliseconds and is defined as the time required for one image to be generated):
+
+| Dataset | (Batch Size, n_epoch) | Training Time (s) | Inference Time (ms) | FID | Precision | Recall | Density | Coverage |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| MNIST | (128, 60) | 700.325 | 0.154 | 4.482 | 0.857 | 0.861 | 0.736 | 0.723 |
+| Fashion-MNIST | (128, 60) | 675.894  | 0.171 | 5.504 | 0.689 | 0.813 | 0.585 | 0.619 |
+
+## Variational Auto-Encoder (VAE): 
+
+Like GAN, VAE also has two sub-networks: Encoder $q_\phi(z|x)$ and Decoder $p_\theta(\hat{x}|z)$. The Encoder subnetwork takes a batch of training images, applies multiple Dense layers on them, and outputs two numbers: mean ($\mu$) and variance ($\sigma$). These numbers show the distribution of VAE's latent space, on which each point shows a training image.
+
+The Decoder sub-network starts with sampling from the latent space (here, 2 dimensional) and reconstructs the 28x28 image. Please refer to the VAE folder for more information about the theory and how the loss function of VAE is calculated.  
+
+| Encoder | Decoder |
+| --- | --- |
+![img05](./res_images/VAE_1.JPG) | ![img06](./res_images/VAE_2.JPG) |
 
 
-### Does Reducing T in DDPM Solve the High Inference Time?
+![img07](./res_images/VAE_3.JPG) | ![img08](./res_images/VAE_4.JPG)
 
-Viewing the high inference time of DDPM, one may think that reducing the number of backward steps, $T$, which has been set to 1000, can reduce the delay. Let's try with $T = 100$ and $T = 500$:
+* As we can see, VAE's output images are not diversified, i.e., a batch of VAE's generated images does not contain fair percentages of all classes. The reason is rooted in VAE's latent space and sampling (inference) step. We should make sure that during the sampling phase, an equal number of samples is taken from each class's distribution in the latent space. Thus, the VAE + GMM method is introduced in the next part.  
 
-1. When $T = 100$:
+VAE score table:
 
-![img10](./images/T_100_exe_time.JPG) | ![img11](./images/T_100.JPG)
+| Dataset | (Batch Size, n_epoch) | Training Time (s) | Inference Time (ms) | FID | Precision | Recall | Density | Coverage |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| MNIST | (128, 60) | 148.948 | 2.312 | 19.907 | 0.604 | 0.523 | 0.519 | 0.492 |
+| Fashion-MNIST | (128, 60) | 166.568  | 7.821 | 7.679 | 0.525 | 0.540 | 0.442 | 0.491 |
 
-Obviously, the inference time has reduced, but the quality of images is undesirable. The resoan is that when the number of steps is remarkably reduced, the DDPM does not see pure noise in its training step. Therefore, it performs awfully in the inference step starting from $x_T = N(0, I)$ 
+## Variational Auto-Encoder + Gaussian Mixture Models (VAE + GMM):
 
-### Output Images Examples: 
+This method employs GMM in the inference step of VAE to ensure that each class in the training set, which has a corresponding distribution in the latent space, has an equal share in the sampled points set given to the decoder. Therefore, a more diversified output batch is generated.
 
-1. DCGAN output for (n_epochs = 20, batch_size = 128)
+Examples of applying GMM on the distributions of classes in VAE's latent space: 
 
-![img07](./images/c9.JPG)
+![img12](./res_images/VAE+GMM_1.JPG) | ![img13](./res_images/VAE+GMM_2.JPG)
 
-2. DCGAN output for (n_epochs = 60, batch_size = 100)
+Generated images of VAE + GMM method:
 
-![img08](./images/c8.JPG)
+![img14](./res_images/VAE+GMM_3.JPG) | ![img15](./res_images/VAE+GMM_4.JPG)
 
-3. DDPM output for (n_epochs = 20, batch_size = 128)
+* Although this method guarantees a more diversified output and modifies the sampling phase, it cannot improve the case in which distributions overlap in the latent space. For example, the overlapping between classes 4 and 9 in MNIST or Ankle boot and Sandal in Fashion-MNIST.
 
-![img09](./images/c10.JPG)
 
-4. VAE output for (n_epochs = 20, batch_size = 128)
+## Denosing Diffusion Probabilistic Model (DDPM): 
 
-![img15](./images/vae_ac3.png)
+The model has a U-Net which takes a noisy image ($x_{t}$) and returns a less noisy image ($x_{t-1}$). The symmetric U-Net architecture has three downward blocks, a mid-layer, and three upward blocks. Each block also has 6 Conv2D layers. Due to the large number of Conv2D and activation layers, only one layer from each block is shown. 
 
-![img16](./images/vae_ac4.png)
+In order for the network to pay enough attention to $t$ as well as $x_t$, an embedding layer should be applied on $t$.  
 
-### Why are the images generated by VAE so blurry?
+![img09](./res_images/DDPM_1.JPG)
 
-One prominent reason is that the samples taken from the latent space mostly lie in the overlapping of distributions or the areas with low probablity (not near mean). Those which clearly show one digit lie near the mean of their labels' distribution.
+DDPM generated images for MNIST and Fashion-MNIST datasets:
+
+![img10](./res_images/DDPM_2.JPG) | ![img11](./res_images/DDPM_3.JPG)
+
+DDPM score table:
+
+| Dataset | (Batch Size, n_epoch) | Training Time (s) | Inference Time (ms) | FID | Precision | Recall | Density | Coverage |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| MNIST | (64, 60) | 1667.414 | 118.312 | 16.180 | 0.824 | 0.859 | 0.693 | 0.688 |
+| Fashion-MNIST | (64, 60) | 1630.831  | 111.875 | 9.811 | 0.748 | 0.656 | 0.606 | 0.536 |
+
+* The inference time for DDPM model is significantly higher compared to other models, which is a disadvantage. The main reason is parameter $T$, which is set to high values (~1000) to ensure that the denoising process is completely done and $q_{\theta}(x_{t-1} | x_{t})$ follows a Gaussian distribution.
 
 ## References: 
 
-1. Jonathan Ho, Ajay Jain, Pieter Abbeel. $\textbf{Denoising Diffusion Probabilistic Models}$. arXiv: 2006.11239, 2020.
-
-2. Ian J.Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, Yoshua Bengio. $\textbf{Generative Adversarial Nets}$. arXiv: 1406.2661, 2014.
-
-3. Olaf Ronneberger, Philipp Fischer, Thomas Brox. $\textbf{U-Net: Convolutional Networks for Biomedical Image Segmentation}$. arXiv: 1505.04597, 2015.
-
-4. Diederik P.Kingma, Max Welling. $\textbf{Auto-Encoding Variational Bayes}$. arXiv: 1312.6111, 2013.
-
-5. Ronald Yu. $\textbf{A Tutorial on VAEs: From Bayes' Rule to Lossless Compression}$. arXiv: 2006.1027, 2020.
-
-6. [Medium link for DCGAN](https://towardsdatascience.com/image-generation-in-10-minutes-with-generative-adversarial-networks-c2afc56bfa3b)
-
-7. [Medium link for DDPM](https://medium.com/mlearning-ai/enerating-images-with-ddpms-a-pytorch-implementation-cef5a2ba8cb1)  
-
-8. [Kaggle link for VAE](https://www.kaggle.com/code/mersico/variational-auto-encoder-from-scratch)
+1. I.J.Goodfellow, J. Pouget-Abadie, M. Mirza, B. Xu, D. Warde-Farley, S. Ozair, A. Courville, Y. Bengio, "Generative Adversarial Nets", *Advance in Neural Information 
+Processing Systems*, vol. 27, pp. 2672-2680, 2014. 
