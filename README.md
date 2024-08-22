@@ -87,5 +87,20 @@ DDPM score table:
 
 ## References: 
 
-1. I.J.Goodfellow, J. Pouget-Abadie, M. Mirza, B. Xu, D. Warde-Farley, S. Ozair, A. Courville, Y. Bengio, "Generative Adversarial Nets", *Advance in Neural Information 
-Processing Systems*, vol. 27, pp. 2672-2680, 2014. 
+1. I.J. Goodfellow, J. Pouget-Abadie, M. Mirza, B. Xu, D. Warde-Farley, S. Ozair, A. Courville, Y. Bengio, “Generative Adversarial Nets”, *Advances in Neural Information Processing Systems*, vol. 27, pp. 2672-2680, 2014.
+
+2. D.P. Kingma, M. Welling, “Auto-Encoding Variational Bayes”, *arXiv: 1312.6114*, 2013.
+
+3. J. Ho, A. Jain, P. Abbeel, “Denoising Diffusion Probabilistic Models”, *Advances in Neural Information Processing Systems*, vol. 33, pp. 6840-6851, 2020.
+
+4. M. Heusel, H. Ramsauer, T. Unterthiner, B. Nessler, “GANs Trained by a Two Time Scale Update Rule Converge to a Local Nash Equilibrium”, *Advances in Neural Information Processing Systems*, vol. 30, pp. 1-12, 2017.
+
+5. M.F. Naeem, S.J. Oh, Y. Uh, Y. Choi, J. Yoo, “Reliable Fidelity and Diversity Metrics for Generative Models”, *International Conference on Machine Learning*, pp. 7176-7185, 2020.
+
+6. M. S. Sajjadi, O. Bachem, M. Lucic, O. Bousquet, S. Gelly, “Assessing Generative Models via Precision and Recall”, *Advances in Neural Information Processing Systems*, vol. 31, 2018.
+
+7. [Medium link for DCGAN](https://towardsdatascience.com/image-generation-in-10-minutes-with-generative-adversarial-networks-c2afc56bfa3b)
+
+8. [Medium link for DDPM](https://medium.com/mlearning-ai/enerating-images-with-ddpms-a-pytorch-implementation-cef5a2ba8cb1)  
+
+9. [Kaggle link for VAE](https://www.kaggle.com/code/mersico/variational-auto-encoder-from-scratch)
