@@ -49,7 +49,8 @@ The Decoder sub-network starts with sampling from the latent space (here, 2 dime
 ![img05](./res_images/VAE_1.JPG) | ![img06](./res_images/VAE_2.JPG) |
 
 
-![img07](./res_images/VAE_3.JPG) | ![img08](./res_images/VAE_4.JPG)
+![img07](./res_images/VAE_3.JPG) | ![img08](./res_images/VAE_4.JPG)|
+| --- | --- |
 
 * As we can see, VAE's output images are not diversified, i.e., a batch of VAE's generated images does not contain fair percentages of all classes. The reason is rooted in VAE's latent space and sampling (inference) step. We should make sure that during the sampling phase, an equal number of samples is taken from each class's distribution in the latent space. Thus, the VAE + GMM method is introduced in the next part.  
 
@@ -70,11 +71,13 @@ This method employs GMM in the inference step of VAE to ensure that each class i
 
 Examples of applying GMM on the distributions of classes in VAE's latent space: 
 
-![img12](./res_images/VAE+GMM_1.JPG) | ![img13](./res_images/VAE+GMM_2.JPG)
+![img12](./res_images/VAE+GMM_1.JPG) | ![img13](./res_images/VAE+GMM_2.JPG)|
+| --- | --- |
 
 Generated images of VAE + GMM method:
 
-![img14](./res_images/VAE+GMM_3.JPG) | ![img15](./res_images/VAE+GMM_4.JPG)
+![img14](./res_images/VAE+GMM_3.JPG) | ![img15](./res_images/VAE+GMM_4.JPG)|
+| --- | --- |
 
 * Although this method guarantees a more diversified output and modifies the sampling phase, it cannot improve the case in which distributions overlap in the latent space. For example, the overlapping between classes 4 and 9 in MNIST or Ankle boot and Sandal in Fashion-MNIST.
 
@@ -84,6 +87,11 @@ VAE + GMMs score table (Compare with VAE's respective diversity and quality meas
 | --- | --- | --- | --- | --- | --- | --- |
 | MNIST | (64, 128) | 24.632 | 0.698 | 0.365 | 0.577 | 0.367 |
 | Fashion-MNIST | (64, 128) | 10.360 | 0.582 | 0.429 | 0.475 | 0.392 |
+
+![img008](./res_images/VAE+GMMs_freq_MNIST.JPG) | ![img009](./res_images/VAE+GMMs_freq_FMNIST.JPG)|
+| --- | --- |
+![img0010](./res_images/t-SNE_VAE+GMMs_MNIST.JPG) | ![img0011](./res_images/t-SNE_VAE+GMMs_FMNIST.JPG)|
+
 
 ## Denosing Diffusion Probabilistic Model (DDPM): 
 
