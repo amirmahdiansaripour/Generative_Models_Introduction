@@ -60,6 +60,10 @@ VAE score table:
 | MNIST | (128, 60) | 148.948 | 2.312 | 19.907 | 0.604 | 0.523 | 0.519 | 0.492 |
 | Fashion-MNIST | (128, 60) | 166.568  | 7.821 | 7.679 | 0.525 | 0.540 | 0.442 | 0.491 |
 
+![img004](./res_images/VAE_freq_MNIST.JPG) | ![img005](./res_images/VAE_freq_FMNIST.JPG)|
+| --- | --- |
+![img006](./res_images/t-SNE_VAE_MNIST.JPG) | ![img007](./res_images/t-SNE_VAE_FMNIST.JPG)|
+
 ## Variational Auto-Encoder + Gaussian Mixture Models (VAE + GMMs):
 
 This method employs GMM in the inference step of VAE to ensure that each class in the training set, which has a corresponding distribution in the latent space, has an equal share in the sampled points set given to the decoder. Therefore, a more diversified output batch is generated.
