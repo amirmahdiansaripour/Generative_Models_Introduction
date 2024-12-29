@@ -49,7 +49,7 @@ VAE score table:
 | MNIST | (128, 60) | 148.948 | 2.312 | 19.907 | 0.604 | 0.523 | 0.519 | 0.492 |
 | Fashion-MNIST | (128, 60) | 166.568  | 7.821 | 7.679 | 0.525 | 0.540 | 0.442 | 0.491 |
 
-## Variational Auto-Encoder + Gaussian Mixture Models (VAE + GMM):
+## Variational Auto-Encoder + Gaussian Mixture Models (VAE + GMMs):
 
 This method employs GMM in the inference step of VAE to ensure that each class in the training set, which has a corresponding distribution in the latent space, has an equal share in the sampled points set given to the decoder. Therefore, a more diversified output batch is generated.
 
@@ -63,6 +63,12 @@ Generated images of VAE + GMM method:
 
 * Although this method guarantees a more diversified output and modifies the sampling phase, it cannot improve the case in which distributions overlap in the latent space. For example, the overlapping between classes 4 and 9 in MNIST or Ankle boot and Sandal in Fashion-MNIST.
 
+VAE + GMMs score table (Compare with VAE's respective diversity and quality measures):
+
+| Dataset | (Batch Size, n_epoch) | FID | Precision | Recall | Density | Coverage |
+| --- | --- | --- | --- | --- | --- | --- |
+| MNIST | (64, 128) | 24.632 | 0.698 | 0.365 | 0.577 | 0.367 |
+| Fashion-MNIST | (64, 128) | 10.360 | 0.582 | 0.429 | 0.475 | 0.392 |
 
 ## Denosing Diffusion Probabilistic Model (DDPM): 
 
