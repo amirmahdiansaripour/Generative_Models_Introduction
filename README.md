@@ -114,6 +114,10 @@ DDPM score table:
 
 * The inference time for DDPM model is significantly higher compared to other models, which is a disadvantage. The main reason is parameter $T$, which is set to high values (~1000) to ensure that the denoising process is completely done and $q_{\theta}(x_{t-1} | x_{t})$ follows a Gaussian distribution.
 
+![img0012](./res_images/DDPM_freq_MNIST.JPG) | ![img0013](./res_images/DDPM_freq_FMNIST.JPG)|
+| --- | --- |
+![img0014](./res_images/t-SNE_DDPM_MNIST.JPG) | ![img0015](./res_images/t-SNE_DDPM_FMNIST.JPG)|
+
 ## References: 
 
 1. I.J. Goodfellow, J. Pouget-Abadie, M. Mirza, B. Xu, D. Warde-Farley, S. Ozair, A. Courville, Y. Bengio, “Generative Adversarial Nets”, *Advances in Neural Information Processing Systems*, vol. 27, pp. 2672-2680, 2014.
