@@ -103,7 +103,8 @@ In order for the network to pay enough attention to $t$ as well as $x_t$, an emb
 
 DDPM generated images for MNIST and Fashion-MNIST datasets:
 
-![img10](./res_images/DDPM_2.JPG) | ![img11](./res_images/DDPM_3.JPG)
+![img10](./res_images/DDPM_2.JPG) | ![img11](./res_images/DDPM_3.JPG)|
+| --- | --- |
 
 DDPM score table:
 
