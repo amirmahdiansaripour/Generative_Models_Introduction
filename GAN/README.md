@@ -1,5 +1,3 @@
-# Generative_Models_Introduction
-
 ## Generative Adversarial Networks (GAN): 
 
 The model has two subnetworks, a discriminator and a generator: (Here we discuss Deep Convolutional GAN or DCGAN)
